@@ -1,6 +1,6 @@
-import * as CopyPlugin from 'copy-webpack-plugin';
-import * as path from 'path';
-import { Configuration } from 'webpack';
+import * as CopyPlugin from 'copy-webpack-plugin'
+import * as path from 'path'
+import { Configuration } from 'webpack'
 
 const webpackConfig: Configuration = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development', 
@@ -30,6 +30,6 @@ const webpackConfig: Configuration = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
-};
+}
 
-export default webpackConfig;
+export default webpackConfig

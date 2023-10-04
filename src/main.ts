@@ -85,19 +85,19 @@ ext.runtime.onExtensionClick.addListener(async () => {
 
 
 ext.tabs.onClicked.addListener(async (tab) => {
-    try {
-      const indexTab = createdTabs.findIndex((createdTab) => createdTab.id === tab.id);
-      if (indexTab !== -1) {
-        const associatedWindow = createdWindows[indexTab];
-        if(associatedWindow){
-            await ext.windows.restore(associatedWindow.id)
-            await ext.windows.focus(associatedWindow.id)
-        }
+  try {
+    const indexTab = createdTabs.findIndex((createdTab) => createdTab.id === tab.id)
+    if (indexTab !== -1) {
+      const associatedWindow = createdWindows[indexTab]
+      if(associatedWindow){
+        await ext.windows.restore(associatedWindow.id)
+        await ext.windows.focus(associatedWindow.id)
       }
-    } catch (error) {
-      console.error('ext.tabs.onClicked', JSON.stringify(error));
     }
-});
+  } catch (error) {
+    console.error('ext.tabs.onClicked', JSON.stringify(error))
+  }
+})
 
 
 // Tab Closed 
