@@ -8,12 +8,14 @@
     "module": "commonjs",
     "lib": ["ES6","DOM","es2017"],
     "types": [
+      "@extpkg/types-websessions",
       "@extpkg/types-console",
       "@extpkg/types-runtime",
       "@extpkg/types-tabs",
       "@extpkg/types-webviews",
-      "@extpkg/types-windows"
+      "@extpkg/types-windows",
+
     ]
   },
-  "include": ["./src/main.ts"]
+  "include": ["src/main.ts"]
 }

@@ -3,7 +3,7 @@
 
 // Global Resources
 const createdTabs: any[] = [];
-const windows: any[] = [];
+const createdWindows: any[] = [];
 const countedTabs: number[] = [];
 const webSessions: any [] = [];
 
@@ -53,7 +53,7 @@ ext.runtime.onExtensionClick.addListener(async () => {
     //Create Web Session
     let newWebsession = await ext.websessions.create({ 
         partition: `TLDraw - ##${nextTabNumber}`, 
-        persistent: true,
+        persistent: false,
         global: false,
         cache: true 
     });
@@ -72,12 +72,14 @@ ext.runtime.onExtensionClick.addListener(async () => {
 
 
     webSessions.push(newWebsession);
-    windows.push(newWindow);
+    createdWindows.push(newWindow);
     createdTabs.push(newTab);
     countedTabs.push(nextTabNumber);
-    console.log(`Window data ${JSON.stringify(windows)}`);
+    console.log(`Window data ${JSON.stringify(createdWindows)}`);
     console.log(`Tab data ${JSON.stringify(createdTabs)}`);
     console.log(`Websessions data ${JSON.stringify(webSessions)}`);
+
+    console.log(countedTabs);
     }
     catch (error) { 
         // Print error
@@ -87,12 +89,30 @@ ext.runtime.onExtensionClick.addListener(async () => {
 });
 
 
-// Tab was Closed
-ext.tabs.onClickedClose.addListener(async (deletedtab) => {
-    const index = createdTabs.findIndex((tab) => tab.id === deletedtab.id)
-    if (index !== -1) {
-        await ext.tabs.remove(deletedtab.id)
-        createdTabs.splice(index, 1)
-        countedTabs.splice(index, 1)
+// Tab Closed 
+ext.tabs.onClickedClose.addListener(async (deletedTab) => {
+    const indexTab = createdTabs.findIndex((tab) => tab.id === deletedTab.id);
+    if (indexTab !== -1) {
+        const associatedWindow = createdWindows[indexTab];
+        if (associatedWindow) {
+            await ext.tabs.remove(deletedTab.id);
+            await ext.windows.remove(associatedWindow.id);
+            createdTabs.splice(indexTab, 1);
+            countedTabs.splice(indexTab, 1);
+            createdWindows.splice(indexTab, 1);
+        }
+    }
+});
+ext.windows.onClosed.addListener(async (deltedWindow)=>{
+    const indexWindow = createdWindows.findIndex((window) => window.id === deltedWindow.id);
+    if(indexWindow !== -1){
+        const associatedTab = createdTabs[indexWindow];
+        if(associatedTab){
+            await ext.tabs.remove(associatedTab.id);
+            await ext.windows.remove(deltedWindow.id);
+            createdWindows.splice(indexWindow, 1);
+            createdTabs.splice(indexWindow, 1);
+            countedTabs.splice(indexWindow, 1);
+        }
     }
 })
