@@ -4,17 +4,16 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
-    "target": "ES5", // Set the target to ES6
+    "target": "ES6", // Set the target to ES6
     "module": "commonjs",
-    "lib": ["ES6","DOM","es2017"],
+    "lib": ["ES6", "DOM", "es2017"],
     "types": [
       "@extpkg/types-websessions",
       "@extpkg/types-console",
       "@extpkg/types-runtime",
       "@extpkg/types-tabs",
       "@extpkg/types-webviews",
-      "@extpkg/types-windows",
-
+      "@extpkg/types-windows"
     ]
   },
   "include": ["src/main.ts"]
