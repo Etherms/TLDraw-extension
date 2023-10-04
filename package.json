@@ -1,4 +1,14 @@
 {
+  "name": "tldraw-extension",
+  "version": "1.0.0",
+  "description": "TLDraw - a collaborative digital whiteboard",
+  "author": "EXT, Inc.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "webpack --mode production --node-env=production",
+    "dev": "webpack --mode development  --node-env=development",
+    "lint": "eslint ."
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "eslint": "^8.50.0",
@@ -6,7 +16,20 @@
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-n": "^16.1.0",
     "eslint-plugin-promise": "^6.1.1",
+    "terser-webpack-plugin": "^5.3.9",
+    "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",
-    "webpack": "^5.88.2"
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@extpkg/types-console": "^1.0.1",
+    "@extpkg/types-runtime": "^1.2.2",
+    "@extpkg/types-tabs": "^1.1.0",
+    "@extpkg/types-timers": "^1.0.1",
+    "@extpkg/types-websessions": "^1.0.2",
+    "@extpkg/types-webviews": "^1.0.2",
+    "@extpkg/types-windows": "^1.2.0",
+    "copy-webpack-plugin": "^11.0.0"
   }
 }
