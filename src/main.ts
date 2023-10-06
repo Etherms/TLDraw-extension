@@ -69,7 +69,7 @@ ext.runtime.onExtensionClick.addListener(async () => {
       autoResize: { width: true, height: true }
     })
 
-    await ext.webviews.loadURL(myWebview.id, 'https://www.tldraw.com')
+    await ext.webviews.loadURL(myWebview.id, 'index.html')
 
     // Add Websession, window, and tab to each valued Array
     webSessions.push(newWebsession)
@@ -120,7 +120,7 @@ ext.tabs.onClickedClose.addListener(async (deletedTab) => {
   }
 })
 
-
+// Window Closed
 ext.windows.onClosed.addListener(async (deltedWindow)=>{
   try{
     const indexWindow = createdWindows.findIndex((window) => window.id === deltedWindow.id)

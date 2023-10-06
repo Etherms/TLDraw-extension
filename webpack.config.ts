@@ -15,6 +15,7 @@ const webpackConfig: Configuration = {
         { from: 'src/icons', to: 'icons' },
         { from: 'src/manifest.json', to: 'manifest.json' },
         { from: 'src/index.html', to: 'index.html' },
+        { from: 'src/bundle.js', to: 'bundle.js' },
       ],
     }),
   ],
