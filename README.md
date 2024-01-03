@@ -1,4 +1,4 @@
-<img src="readme sample.png" alt="TlDraw Extension sample picture">
+<img src="/src/icons/readme sample.png" alt="TlDraw Extension sample picture">
 A TLDraw Extension for EXT Application
 
 # tldraw
